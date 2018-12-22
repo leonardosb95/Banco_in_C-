@@ -11,6 +11,19 @@ namespace Banco
         public int Numero { get; /*protected*/ set; }
         public double Saldo { get;protected set; }//Protected-Somente os atributos e metodos das classses podem alterar/herdeiras tambem
         public int Tipo { get; protected set; }
+        private  static int numeroDeContas = 0;//Esse atributo pertece a classe conta e não objeto conta corrente
+
+        public Conta()
+        {
+            Conta.numeroDeContas++;//Utilizando o Static para contar o numero total de contas 
+            this.Numero = numeroDeContas;
+        }
+            
+        public  static int ProximaConta()
+        {
+            return Conta.numeroDeContas + 1;//Conta a proximo numero para cadastramento da conta
+        }
+
 
         //public int Numero {
         //    set {
@@ -38,6 +51,8 @@ namespace Banco
         //        this.Saldo += valor;
 
         //}
+
+         
 
             //CLASSES ABSTRATAS
 

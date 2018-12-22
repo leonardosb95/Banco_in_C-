@@ -43,5 +43,13 @@ namespace Banco
 
         }
 
+        public double CalculaTributo()
+        {
+            return this.Saldo * 0.02;
+
+        }
+
+        
+
     }
     }

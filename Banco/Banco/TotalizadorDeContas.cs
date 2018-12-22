@@ -9,10 +9,28 @@ namespace Banco
     public class TotalizadorDeContas
     {
         public double ValorTotal { get; private set; }
+        public double Total { get; private set; }
 
-        public void Soma(Conta conta)
+        //public void Soma(Conta conta)
+        //{
+        //    ValorTotal += conta.Saldo;
+        //}
+
+        ////Soma o valor do tributo de conta Poupança e Conta corrente
+        //public void Acumula(ContaPoupanca cp)
+        //{
+
+        //    ValorTotal += cp.CalculaTributo();
+        //}
+
+        //public void Acumula(ContaInvestimento ci)
+        //{
+        //    ValorTotal += ci.CalculaTributo();
+        //}
+
+        public void Acumula(ITributavel t)
         {
-            ValorTotal += conta.Saldo;
+            Total += t.CalculaTributos();
         }
     }
 }

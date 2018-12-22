@@ -59,17 +59,17 @@ namespace Banco
             //c1.Numero = 1;
             //this.AdicionaConta(c1);
 
-            Conta c1 = new ContaPoupanca();
-            c1.Titular = new Cliente("Roberto");
-            c1.Numero = 1;
-            this.AdicionaConta(c1);
+            //Conta c1 = new ContaPoupanca();
+            //c1.Titular = new Cliente("Roberto");
+            //c1.Numero = 1;
+            //this.AdicionaConta(c1);
+            
 
-            Conta c2 = new ContaCorrente();
-            c2.Titular = new Cliente("Fernando");
-            c2.Numero = 2;
-            this.AdicionaConta(c2);
-
-
+            //Conta c2 = new ContaCorrente();
+            //c2.Titular = new Cliente("Fernando");
+            //c2.Numero = 2;
+            //this.AdicionaConta(c2);
+         
             ////Exibi no combox as contas adicionadas do array contas
             //foreach (var conta in contas)
             //{
@@ -82,6 +82,8 @@ namespace Banco
             //{
             //        comboDestinoTransferencia.Items.Add("Titular "+ conta.Titular.Nome);
             //}
+
+
 
 
         }
@@ -99,11 +101,11 @@ namespace Banco
                 //Soma todas as contas e joga no totalizador
                 TotalizadorDeContas saldoTotal = new TotalizadorDeContas();
 
-                foreach (var item in contas)
-                {
-                    saldoTotal.Soma(item);
-                }
-                TextoSaldoTotal.Text = Convert.ToString(saldoTotal.ValorTotal);
+                //foreach (var item in contas)
+                //{
+                //    saldoTotal.Soma(item);
+                //}
+                //TextoSaldoTotal.Text = Convert.ToString(saldoTotal.ValorTotal);
 
             }
             catch (Exception)
@@ -127,11 +129,12 @@ namespace Banco
             //TOTAL DE TODAS AS CONTAS
             TotalizadorDeContas saldoTotal = new TotalizadorDeContas();
 
-            foreach (var item in contas)
-            {
-                saldoTotal.Soma(item);
-            }
-            TextoSaldoTotal.Text = Convert.ToString(saldoTotal.ValorTotal);
+            //foreach (var item in contas)
+            //{
+            //    saldoTotal.Soma(item);
+            //}
+            //TextoSaldoTotal.Text = Convert.ToString(saldoTotal.ValorTotal);
+
 
         }
 
@@ -170,6 +173,26 @@ namespace Banco
         {
             FormCadastroConta formularioDeCadastro = new FormCadastroConta(this);//instanciar o FormCadastroConta
             formularioDeCadastro.ShowDialog();//Mostra o formulario de cadastro
+
+        }
+
+        private void botaoImpostos_Click(object sender, EventArgs e)
+        {
+
+            //TotalizadorDeTributos totalizador = new TotalizadorDeTributos();
+            //foreach (var conta in contas)
+            //{
+            //    if (conta is ContaCorrente)
+            //    {
+            //        //totalizador.Adiciona(conta);
+            //    }
+            //}
+            //MessageBox.Show(Convert.ToString(totalizador.Total));
+
+            
+
+
+
 
         }
     }
