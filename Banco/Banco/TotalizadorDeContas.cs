@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Banco
+namespace Banco.Contas
 {
     public class TotalizadorDeContas
     {
-        public double ValorTotal { get; private set; }
-        public double Total { get; private set; }
+        public double ValorTotal { get; private set; }//Variavel pode ser lida mas não alterada fora dos metodos
 
         //public void Soma(Conta conta)
         //{
@@ -28,9 +27,9 @@ namespace Banco
         //    ValorTotal += ci.CalculaTributo();
         //}
 
-        public void Acumula(ITributavel t)
+        public void Acumula(Conta conta)
         {
-            Total += t.CalculaTributos();
+            this.ValorTotal += conta.Saldo;
         }
     }
 }

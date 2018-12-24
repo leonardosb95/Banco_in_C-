@@ -66,6 +66,10 @@ namespace Banco
                         break;
                 }
                 MessageBox.Show("Cadastro realizado com sucesso!!");
+                //Mostra a proxima numeração de conta ao cadastrar cliente
+                var proxima = Conta.ProximaConta();
+                textoNumero.Text = Convert.ToString(proxima);
+                textoTitular.Text = "";
 
 
             }

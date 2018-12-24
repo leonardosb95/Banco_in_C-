@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Banco.Contas;
 
 namespace Banco
 {
@@ -90,41 +91,70 @@ namespace Banco
         //Deposita 
         private void botaoDeposita_Click(object sender, EventArgs e)
         {
+            int indice = Convert.ToInt32(comboIndice.SelectedIndex);
+            Conta selecionada = this.contas[indice];
+            double valor = Convert.ToDouble(TextoValor.Text);
+
+
+
             try
             {
-                int indice = Convert.ToInt32(comboIndice.SelectedIndex);
-                string valorDigitado = TextoValor.Text;
-                double valorOperacao = Convert.ToDouble(valorDigitado);
-                this.contas[indice].Deposita(valorOperacao);
-                TextoSaldo.Text = Convert.ToString(this.contas[indice].Saldo);
-
-                //Soma todas as contas e joga no totalizador
-                TotalizadorDeContas saldoTotal = new TotalizadorDeContas();
-
-                //foreach (var item in contas)
-                //{
-                //    saldoTotal.Soma(item);
-                //}
-                //TextoSaldoTotal.Text = Convert.ToString(saldoTotal.ValorTotal);
-
+                   
+                selecionada.Deposita(valor);
+                TextoSaldo.Text = Convert.ToString(selecionada.Saldo);
+                MessageBox.Show("Deposito realizado com sucesso!!");
             }
-            catch (Exception)
+
+            catch (ArgumentException)
             {
-                MessageBox.Show("Erro ao tentar depositar");
-                throw;
+                MessageBox.Show("Erro ao tentar depositar valor negativo");
+                
             }
+          
 
-           
+            ////Soma todas as contas e joga no totalizador
+            //TotalizadorDeContas saldoTotal = new TotalizadorDeContas();
+
+            ////foreach (var item in contas)
+            ////{
+            ////    saldoTotal.Soma(item);
+            ////}
+            ////TextoSaldoTotal.Text = Convert.ToString(saldoTotal.ValorTotal);
+
+
 
         }
         //Botao saca
         private void botaoSaca_Click(object sender, EventArgs e)
         {
             int indice = Convert.ToInt32(comboIndice.SelectedIndex);
-            string valorDigitado = TextoValor.Text;
-            double valorOperacao = Convert.ToDouble(valorDigitado);
-            this.contas[indice].Saca(valorOperacao);
-            TextoSaldo.Text = Convert.ToString(this.contas[indice].Saldo);
+            double valor = Convert.ToDouble(TextoValor.Text);
+            Conta selecionada = this.contas[indice];
+
+            try
+            {
+                selecionada.Saca(valor);
+                    TextoSaldo.Text = Convert.ToString(selecionada.Saldo);
+                MessageBox.Show("Saque realizado com sucesso!!");
+
+
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("Erro ao tentar depositar valor negativo");
+
+            }
+
+            catch (SaldoInsuficienteException)
+            {
+                MessageBox.Show("Saldo insuficiente");
+            }
+            finally{
+
+                TextoValor.Text = "";
+            } 
+
+
 
             //TOTAL DE TODAS AS CONTAS
             TotalizadorDeContas saldoTotal = new TotalizadorDeContas();

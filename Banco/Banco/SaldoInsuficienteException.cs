@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Banco
 {
-    public interface ITributavel//Utilizando interface, somente para guardar o metodo calculaTtributos
+    public class SaldoInsuficienteException: Exception//Exceção criada para tratamento de erros
     {
-         double CalculaTributos();
 
     }
 }
