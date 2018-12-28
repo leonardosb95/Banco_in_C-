@@ -35,7 +35,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.TextoNumero = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.TextoValor = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -43,6 +42,9 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.TextoSaldoTotal = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.botaoBusca = new System.Windows.Forms.Button();
+            this.textoBuscaTitular = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.comboIndice = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -51,6 +53,8 @@
             this.comboDestinoTransferencia = new System.Windows.Forms.ComboBox();
             this.botaoNovaConta = new System.Windows.Forms.Button();
             this.botaoImpostos = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.botaoEditarTexto = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -81,6 +85,7 @@
             // 
             this.TextoSaldo.Location = new System.Drawing.Point(130, 123);
             this.TextoSaldo.Name = "TextoSaldo";
+            this.TextoSaldo.ReadOnly = true;
             this.TextoSaldo.Size = new System.Drawing.Size(100, 20);
             this.TextoSaldo.TabIndex = 2;
             // 
@@ -88,6 +93,7 @@
             // 
             this.TextoTitular.Location = new System.Drawing.Point(130, 19);
             this.TextoTitular.Name = "TextoTitular";
+            this.TextoTitular.ReadOnly = true;
             this.TextoTitular.Size = new System.Drawing.Size(100, 20);
             this.TextoTitular.TabIndex = 3;
             // 
@@ -113,17 +119,9 @@
             // 
             this.TextoNumero.Location = new System.Drawing.Point(130, 71);
             this.TextoNumero.Name = "TextoNumero";
+            this.TextoNumero.ReadOnly = true;
             this.TextoNumero.Size = new System.Drawing.Size(100, 20);
             this.TextoNumero.TabIndex = 5;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(250, 215);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Cadastrar cliente";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -155,7 +153,6 @@
             this.groupBox1.Controls.Add(this.TextoNumero);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.botaoDeposita);
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.TextoValor);
             this.groupBox1.Controls.Add(this.botaoSaca);
             this.groupBox1.Controls.Add(this.label3);
@@ -163,7 +160,7 @@
             this.groupBox1.Controls.Add(this.TextoTitular);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(63, 107);
+            this.groupBox1.Location = new System.Drawing.Point(43, 161);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(341, 263);
             this.groupBox1.TabIndex = 11;
@@ -173,35 +170,64 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.TextoSaldoTotal);
-            this.groupBox2.Location = new System.Drawing.Point(346, 1);
+            this.groupBox2.Location = new System.Drawing.Point(438, 1);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 100);
+            this.groupBox2.Size = new System.Drawing.Size(200, 154);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Totalizador de contas";
             // 
             // TextoSaldoTotal
             // 
-            this.TextoSaldoTotal.Location = new System.Drawing.Point(37, 38);
+            this.TextoSaldoTotal.Location = new System.Drawing.Point(47, 38);
             this.TextoSaldoTotal.Name = "TextoSaldoTotal";
             this.TextoSaldoTotal.Size = new System.Drawing.Size(100, 20);
             this.TextoSaldoTotal.TabIndex = 0;
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.botaoBusca);
+            this.groupBox3.Controls.Add(this.textoBuscaTitular);
+            this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.comboIndice);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Location = new System.Drawing.Point(63, 1);
+            this.groupBox3.Location = new System.Drawing.Point(60, 1);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(263, 90);
+            this.groupBox3.Size = new System.Drawing.Size(348, 154);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Busca de conta";
             // 
+            // botaoBusca
+            // 
+            this.botaoBusca.Location = new System.Drawing.Point(249, 71);
+            this.botaoBusca.Name = "botaoBusca";
+            this.botaoBusca.Size = new System.Drawing.Size(75, 23);
+            this.botaoBusca.TabIndex = 6;
+            this.botaoBusca.Text = "Buscar";
+            this.botaoBusca.UseVisualStyleBackColor = true;
+            this.botaoBusca.Click += new System.EventHandler(this.botaoBusca_Click);
+            // 
+            // textoBuscaTitular
+            // 
+            this.textoBuscaTitular.Location = new System.Drawing.Point(108, 73);
+            this.textoBuscaTitular.Name = "textoBuscaTitular";
+            this.textoBuscaTitular.Size = new System.Drawing.Size(122, 20);
+            this.textoBuscaTitular.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(14, 73);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(88, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Busca Por Titular";
+            // 
             // comboIndice
             // 
             this.comboIndice.FormattingEnabled = true;
-            this.comboIndice.Location = new System.Drawing.Point(109, 32);
+            this.comboIndice.Location = new System.Drawing.Point(109, 19);
             this.comboIndice.Name = "comboIndice";
             this.comboIndice.Size = new System.Drawing.Size(121, 21);
             this.comboIndice.TabIndex = 3;
@@ -210,7 +236,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 35);
+            this.label5.Location = new System.Drawing.Point(14, 22);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 13);
             this.label5.TabIndex = 2;
@@ -221,7 +247,7 @@
             this.groupBox4.Controls.Add(this.botaoTransferenciaDestino);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.comboDestinoTransferencia);
-            this.groupBox4.Location = new System.Drawing.Point(426, 107);
+            this.groupBox4.Location = new System.Drawing.Point(426, 161);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(212, 117);
             this.groupBox4.TabIndex = 14;
@@ -275,11 +301,33 @@
             this.botaoImpostos.UseVisualStyleBackColor = true;
             this.botaoImpostos.Click += new System.EventHandler(this.botaoImpostos_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(569, 401);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Relatorios";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // botaoEditarTexto
+            // 
+            this.botaoEditarTexto.Location = new System.Drawing.Point(426, 401);
+            this.botaoEditarTexto.Name = "botaoEditarTexto";
+            this.botaoEditarTexto.Size = new System.Drawing.Size(107, 23);
+            this.botaoEditarTexto.TabIndex = 19;
+            this.botaoEditarTexto.Text = "Editar texto";
+            this.botaoEditarTexto.UseVisualStyleBackColor = true;
+            this.botaoEditarTexto.Click += new System.EventHandler(this.botaoEditarTexto_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(666, 381);
+            this.ClientSize = new System.Drawing.Size(666, 524);
+            this.Controls.Add(this.botaoEditarTexto);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.botaoImpostos);
             this.Controls.Add(this.botaoNovaConta);
             this.Controls.Add(this.groupBox4);
@@ -310,7 +358,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TextoNumero;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TextoValor;
         private System.Windows.Forms.Label label4;
@@ -326,6 +373,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button botaoNovaConta;
         private System.Windows.Forms.Button botaoImpostos;
+        private System.Windows.Forms.Button botaoBusca;
+        private System.Windows.Forms.TextBox textoBuscaTitular;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button botaoEditarTexto;
     }
 }
 

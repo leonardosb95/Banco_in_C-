@@ -59,6 +59,7 @@
             // 
             this.textoNumero.Location = new System.Drawing.Point(122, 36);
             this.textoNumero.Name = "textoNumero";
+            this.textoNumero.ReadOnly = true;
             this.textoNumero.Size = new System.Drawing.Size(100, 20);
             this.textoNumero.TabIndex = 2;
             // 

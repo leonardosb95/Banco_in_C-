@@ -7,17 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Banco.Contas;
+using Banco.Busca;
 
 namespace Banco
 {
     public partial class FormCadastroConta : Form
     {
         private Form1 formPrincipal;
+        private ICollection<string> devedores;
 
         public FormCadastroConta(Form1 formPrincipal)
         {
             this.formPrincipal = formPrincipal;
             InitializeComponent();
+
+            GeradorDeDevedores gerador = new GeradorDeDevedores();
+            this.devedores = gerador.GeralList();//Recebe os 3000 devedores
 
             comboTipoConta.Items.Add("Conta Corrente");
             comboTipoConta.Items.Add("Conta Poupança");
@@ -33,10 +39,28 @@ namespace Banco
 
         private void botaoCadastro_Click(object sender, EventArgs e)
         {
+            int indice = comboTipoConta.SelectedIndex;
+
+            string titular = textoTitular.Text;
+            bool ehDevedor = false;
+
+          
+            for (int i = 0; i < 3000; i++)
+            {
+                ehDevedor = this.devedores.Contains(titular);//Vai percorrer a lista devedores para ver se ja não contem o devedor
+            }
+
+            if (!ehDevedor)
+            {
+
+            
+
             try
             {
 
-                int indice = comboTipoConta.SelectedIndex;
+                
+
+
 
                 switch (indice)
                 {
@@ -78,7 +102,12 @@ namespace Banco
                 MessageBox.Show("Cadastro não realizado!!");
                 throw;
             }
-            
+            }
+            else
+            {
+                MessageBox.Show("devedor");
+            }
+
         }
 
     }

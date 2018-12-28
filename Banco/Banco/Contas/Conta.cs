@@ -76,7 +76,12 @@ namespace Banco.Contas
             }
 
         }
+        ////SOBRESCREVEMOS O METODO TOSTRING DE OBJECT COM O PADRÃO DE RETORNAR O NOME DO TITULAR
+        //public override string ToString()
+        //{
+        //    return "Titular: " + this.Titular.Nome;
+        //}
 
-        
+
     }
 }

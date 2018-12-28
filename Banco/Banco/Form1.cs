@@ -14,20 +14,27 @@ namespace Banco
     public partial class Form1 : Form
     {
         //private Conta[] contas;//Array
-        private List<Conta> contas= new List<Conta>();
+        private List<Conta> contas = new List<Conta>();
         //Guarda o numero de contas que já foram cadastradas
-        private int numeroDeContas;//Conta o numero de contas existentes
+        private Dictionary<string, Conta> dicionario;   
 
         //Adiciona uma nova conta
         public void AdicionaConta(Conta conta)
         {
             //this.contas[this.numeroDeContas] = conta;
             contas.Add(conta);
-            this.numeroDeContas++;
-            comboIndice.Items.Add("Titular: " + conta.Titular.Nome);
-            comboDestinoTransferencia.Items.Add("Titular: " + conta.Titular.Nome);
+            //this.numeroDeContas++;
+            //comboIndice.Items.Add("Titular: " + conta.Titular.Nome);
+            //comboDestinoTransferencia.Items.Add("Titular: " + conta.Titular.Nome);
 
+            //UTILIZANDO OBJECT DO METODO TOSTRING PARA ADD COM O PADRÃO MOSTRADO ACIMA
 
+            comboIndice.Items.Add(conta);
+            comboIndice.DisplayMember = "Numero";//Exibi o numero adicionada no atributo Numero da Conta
+            comboDestinoTransferencia.Items.Add(conta);
+            comboDestinoTransferencia.DisplayMember = "Numero";
+
+            this.dicionario.Add(conta.Titular.Nome, conta);//Adicionando os cliente no Dictionary
         }
 
         public Form1()
@@ -37,6 +44,8 @@ namespace Banco
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.dicionario = new Dictionary<string, Conta>();
+
             //contas = new Conta[10];
 
             //this.contas[0] = new Conta();
@@ -91,15 +100,16 @@ namespace Banco
         //Deposita 
         private void botaoDeposita_Click(object sender, EventArgs e)
         {
-            int indice = Convert.ToInt32(comboIndice.SelectedIndex);
-            Conta selecionada = this.contas[indice];
+            //int indice = Convert.ToInt32(comboIndice.SelectedIndex);
+            //Conta selecionada = this.contas[indice];
+            Conta selecionada = (Conta)comboIndice.SelectedItem;
             double valor = Convert.ToDouble(TextoValor.Text);
 
 
 
             try
             {
-                   
+
                 selecionada.Deposita(valor);
                 TextoSaldo.Text = Convert.ToString(selecionada.Saldo);
                 MessageBox.Show("Deposito realizado com sucesso!!");
@@ -181,21 +191,36 @@ namespace Banco
         //Botao de transferência
         private void botaoTransferenciaDestino_Click(object sender, EventArgs e)
         {
-            //Conta origem
-            int indiceOrigem = Convert.ToInt32(comboIndice.SelectedIndex);
-            Conta origem = this.contas[indiceOrigem];
-            //Conta destino
-            int indiceDestino = Convert.ToInt32(comboDestinoTransferencia.SelectedIndex);
-            Conta destino = this.contas[indiceDestino];
-
-            //Pega o valor que vai ser transferido
+            Conta contaDestino = (Conta)comboDestinoTransferencia.SelectedItem;
+            Conta contaOrigem = (Conta)comboIndice.SelectedItem;
             string valorDigitado = TextoValor.Text;
             double valorOperacao = Convert.ToDouble(valorDigitado);
-            //Transfere o valor para a conta destino
-            origem.Transfere(valorOperacao,destino);
 
-            //Atualiza o saldo após a transferência
-            TextoSaldo.Text = Convert.ToString(origem.Saldo);
+            try
+            {
+                //Conta origem
+                //int indiceOrigem = Convert.ToInt32(comboIndice.SelectedIndex);
+                //Conta origem = this.contas[indiceOrigem];
+                //Conta destino
+                //int indiceDestino = Convert.ToInt32(comboDestinoTransferencia.SelectedIndex);
+                //Conta destino = this.contas[indiceDestino];
+                //Transfere o valor para a conta destino
+                contaOrigem.Transfere(valorOperacao, contaDestino);
+                //Atualiza o saldo após a transferência
+                TextoSaldo.Text = Convert.ToString(contaOrigem.Saldo);
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Erro ao tentar realizar transferência!!");
+            }
+            
+        
+
+           
+
+
+
 
         }
 
@@ -209,21 +234,53 @@ namespace Banco
         private void botaoImpostos_Click(object sender, EventArgs e)
         {
 
-            //TotalizadorDeTributos totalizador = new TotalizadorDeTributos();
-            //foreach (var conta in contas)
-            //{
-            //    if (conta is ContaCorrente)
-            //    {
-            //        //totalizador.Adiciona(conta);
-            //    }
-            //}
-            //MessageBox.Show(Convert.ToString(totalizador.Total));
-
-            
+            TotalizadorDeTributos totalizador = new TotalizadorDeTributos();
+            foreach (var conta in contas)
+            {
+                if (conta is ContaCorrente)
+                {
+                    totalizador.Adiciona((ContaCorrente)conta);//Utilizei o cast para converter conta para tipo ContaCorrente
+                }
+            }
+            MessageBox.Show(Convert.ToString(totalizador.Total));
 
 
 
 
+
+        }
+
+        private void botaoBusca_Click(object sender, EventArgs e)
+        {
+            string nomeTitular = textoBuscaTitular.Text;
+
+            try
+            {
+                Conta conta = dicionario[nomeTitular];//Busca no Dicionario o cliente
+                TextoTitular.Text = conta.Titular.Nome;
+                TextoNumero.Text = Convert.ToString(conta.Numero);
+                TextoSaldo.Text = Convert.ToString(conta.Saldo);
+
+                comboIndice.SelectedItem = conta;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Cliente não cadastrado!!");
+            }
+         
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormRelatorios formRelatorios = new FormRelatorios(this.contas);
+            formRelatorios.ShowDialog();
+        }
+
+        private void botaoEditarTexto_Click(object sender, EventArgs e)
+        {
+            EditorDeTexto editorDeTexto = new EditorDeTexto();
+            editorDeTexto.ShowDialog();
         }
     }
 }

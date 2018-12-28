@@ -9,3 +9,5 @@ C:\Users\leona\source\ProjetoInicial\Banco\Banco\obj\Debug\Banco.csproj.CoreComp
 C:\Users\leona\source\ProjetoInicial\Banco\Banco\obj\Debug\Banco.exe
 C:\Users\leona\source\ProjetoInicial\Banco\Banco\obj\Debug\Banco.pdb
 C:\Users\leona\source\ProjetoInicial\Banco\Banco\obj\Debug\Banco.FormCadastroConta.resources
+C:\Users\leona\source\ProjetoInicial\Banco\Banco\obj\Debug\Banco.FormRelatorios.resources
+C:\Users\leona\source\ProjetoInicial\Banco\Banco\obj\Debug\Banco.EditorDeTexto.resources
